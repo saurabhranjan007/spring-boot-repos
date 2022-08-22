@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Student List</title>
+</head>
+
+<body>
+    <h3> Student Details: </h3>
+    <table>
+        <!--  -->
+        <tr>
+            <th>Name</th>
+            <th>Score</th>
+        </tr>
+        <!-- Dynamic data that is being passed from "getStudents() - ModalAndView" -->
+        <tr th:each="student:${students}"></tr>
+        <!-- Since "students" is the student entry that we're sending through the ModalAndView,
+             and now we render the data for each "grabbed student"
+             -->
+            <td th:text="${student.name}"></td>
+            <td th:text="${student.score}"></td>
+    </table>
+</body>
+</html>

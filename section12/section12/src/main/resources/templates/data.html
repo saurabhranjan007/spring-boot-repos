@@ -1,0 +1,21 @@
+<!doctype html>
+<!-- Before moving ahead with the body we first need to define a namespace in this case "xmlns". -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Data Renderer</title>
+</head>
+
+<body>
+<!-- Within the body we use special syntax provided by Thymeleaf to render dynamic data and content -->
+<!-- Here first we need to define how we're going to render the incoming data, and we use "th:_RENDER_TYPE_" -->
+<!-- So the complete syntax for this would be (th:text="${_KEY_}"), here key is the defined "key" in "ModelAndView" -->
+
+    <div th:text="${message}"></div>
+
+<!-- Here Thymeleaf will take the data coming from "message" and render it in "<div>" -->
+</body>
+</html>

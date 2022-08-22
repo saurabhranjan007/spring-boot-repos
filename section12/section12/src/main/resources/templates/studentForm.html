@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+
+  <head>
+      <meta charset="UTF-8">
+      <title>Student Form Data: </title>
+  </head>
+
+<!-- To connect the below HTML form to a "Modal Object", we can use "Thymeleaf tags".. -->
+  <body>
+  <!-- Currently we're not submitting the form or processing the data inside, to do that we use a special "Thymeleaf" syntax,
+             (th:action="@{_ACTION_NAME_}") -->
+<!-- The default method actually is "GET", so currently this will display the data in the url as well if we stick with GET method. -->
+<!-- So we will need to use the "POST" method here, in order to get rid of that. -->
+      <form th:action="@{/saveForm}" th:object="${student}" method="post">
+        Name: <input type="text" th:field="*{name}" />
+        Score: <input type="text" th:field="*{score}" />
+        <input type="submit" value="save" />
+        <input type="reset" value="reset" />
+      </form>
+<!-- If a "student" object is sent to this template, the values will automatically be taken and, -->
+<!-- they will be rendered inside these "Name" and "Score" fields provided we use this tag "th:field="*{_DATA_}" -->
+  </body>
+
+</html>

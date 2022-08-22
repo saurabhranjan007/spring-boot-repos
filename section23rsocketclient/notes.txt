@@ -1,0 +1,27 @@
+R Socket - basically solved all the issues we had regarding reactive stream and back pressure. Also, it is not bound to any
+		single language it has support across languages (i.e., JAVA, JS, Kotlin). It also works on top of other protocols
+		like TCP, WebSocket and Aron(a messaging protocol that uses UDP).
+
+		>> There are four major implications of RSocket protocol.
+
+			1. Request/response - just like Http you request certain information to the server, and
+				it responds back with appropriate response.
+
+				Like - you request with Patient name and server will respond with his/her clinical data
+						(in a hospital scenario)
+
+			2. Fire and Forget - as the name suggests this means a request will be sent w/o expecting
+					any response from server.
+
+					Like - you fire an event "Patient Checkout" but you're not expecting any response
+							(all the billing and other actions are being conducted on the BE)
+
+			3. Request Stream - this where we send a request and wait for a stream of responses
+					(there is a way we do it in Http i.e., using Long Polling)
+
+					Like - we can get all the insurance claims that are available and when they are available
+							and start processing them on the client side
+
+			4. Channel - using this we can open up two-way streaming, it's a little tricky because it becomes a
+					little difficult to figure out which one is server and which one is client. Both parties can
+					access each other's data

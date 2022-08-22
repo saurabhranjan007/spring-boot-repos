@@ -1,0 +1,75 @@
+# Configuring the MySQL database, so that it could interact with the application.
+
+spring.datasource.url=jdbc:mysql://localhost:3306/mydb
+spring.datasourcusername=root
+spring.datasource.password=MySQL@#0012
+
+# Spring Boot by default does not provide any application context path(path at with which a web application is accessed)
+# So we need to provide a context path manually, and we define the context path here in "application.properties".
+server.servlet.context-path=/productapi
+
+
+# In this application currently, we are using hardcoded endpoints for the REST services.
+# Hardcoded endpoint - is not a good practice. SO we need to profile the application
+# for different types of usage like "DEV, STAGING & TESTING"..
+
+productrestapi.services.url=http://localhost:8080/productapi/products/
+
+
+# To use multiple profiles, we need to create multiple "application.properties"..
+# Once we have created multiple "application.properties" - then we need to activate 'em so that it could be used.
+
+# IMP NOTE: To ACTIVATE the profile, we use "spring.profiles.active=_PROPERTY_NAME_"
+# IMP NOTE: To activate the profile not thro each of the application properties.
+#           We can dynamically do that while running the app, uisng
+#           Run As > Run Configuration > Arguments - VM Arguments - "-Dspring.profiles.active=testing"
+
+
+# By default, when we implement LOGGER, the logs basically go to the console, but we can easily redirect
+# them to a file by handling the properties in "application.properties".
+
+logging.file.name=logs/application.log
+
+# we can also set Log Level, by setting log level we define what sort of things we want to be logged in the file.
+# if we set the log level to be error then it only logs th0e error messages.
+# we can also control the logging stage, meaning whether you want the logs to be of root level or
+# a particular framework level like .org or even go down the levels in the framework
+# You can also log to any package like the ones we define when we initiate spring boot project.
+
+logging.level.root=error 
+logging.level.org.org.springframework=info 
+
+# Once we have added the "spring-boot-actuator" dependency then we start receiving health related information.
+# Spring boot basically provides a lot of properties for all the health matrices, and we can configure
+# them here in "application.properties"
+
+management.endpoint.health.show-details=always 
+
+# Spring boot actuator by default exposes only a few health points like "health", "info" and in order
+# to expose all the health related matrices we need to configure that here in "application.properties"s
+
+# exposing all the endpoints or health related matrices for the application:
+
+management.endpoint.web.exposure.include=*
+
+# Above here we're exposing all the health related endpoints, we can also exclude some if we want to
+# by "management.endpoint.web.exposure.exclude=_ENDPOINT_NAME_"
+
+# Enabling security to access the health endpoints -
+
+spring.security.user.name=saurabh
+spring.security.user.password=spring@101
+
+# we need to define this so that we can see the SQL and how many times it will go against the database,
+# since we have enabled caching so only one query should be executed no matter the number of "GET - request"
+
+spring.jpa.show-sql=true
+
+# We can even configure a custom UI for swagger by changing an application property here
+
+springdoc.swagger-ui.path=/swaggerui
+
+# Instead "application.properties", we can also use something called as "YAML" files for configuration
+# SWITCHING TO YAML - from this "application.properties"
+
+# Making this a backup file by adding "bak"
